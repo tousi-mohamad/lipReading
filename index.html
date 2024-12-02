@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Game</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+            background: rgb(253,29,214);
+            background: linear-gradient(90deg, rgba(253,29,214,1) 27%, rgba(69,229,252,1) 72%);
+        }
+
+        #points {
+            position: fixed;
+            top: 72px;
+            font-size: 61px;
+        }
+
+        #word {
+            font-size: 250px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            position: fixed;
+            bottom: 91px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 60px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #greenButton {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #greenButton:hover {
+            background-color: #218838;
+        }
+
+        #yellowButton {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        #yellowButton:hover {
+            background-color: #e0a800;
+        }
+
+        #startButton {
+            background-color: #007bff;
+            color: white;
+            /*margin-bottom: 20px;*/
+        }
+
+        #startButton:hover {
+            background-color: #0056b3;
+        }
+
+        #timer {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 100px;
+            color: red;
+        }
+
+        .word-cloud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .word-cloud span {
+            position: absolute;
+            font-size: 40px;
+            color: #fff;
+            animation: float 30s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-1000px);
+            }
+        }
+
+        #gameOverMessage {
+            display: none;
+            font-size: 166px;
+            font-weight: bold;
+            color: #4b14e4;
+            text-align: center;
+        }
+    </style>
+    <!-- Include the canvas-confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+<div id="timer">Time: 60s</div>
+<div id="points">امتیاز: 0</div>
+<div id="word">دکمه ی شروع را بزنید!</div>
+
+
+
+<div id="gameOverMessage"></div>
+
+
+<div class="buttons">
+    <button id="startButton">شروع</button>
+    <button id="greenButton" disabled>درست</button>
+    <button id="yellowButton" disabled>بعدی</button>
+</div>
+
+<div class="word-cloud" id="wordCloud"></div>
+
+
+
+<script src="game.js"></script>
+
+</body>
+</html>
