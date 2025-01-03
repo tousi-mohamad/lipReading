@@ -119,6 +119,73 @@
             color: #4b14e4;
             text-align: center;
         }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            /*padding: 20px;*/
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 20px;
+            color: white;
+        }
+
+        .sidebar form {
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .sidebar input,
+        .sidebar textarea,
+        .sidebar button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .sidebar button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        #toggleSidebar {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #a72856;
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            border: none;
+            font-size: 20px;
+        }
+        .close-btn:hover {
+            color: #f00;
+        }
+
+
     </style>
     <!-- Include the canvas-confetti library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -141,6 +208,28 @@
 </div>
 
 <div class="word-cloud" id="wordCloud"></div>
+
+<!--sidebar-->
+<div id="sidebar" class="sidebar">
+    <span id="closeSidebar" class="close-btn">✖</span>
+
+    <form id="apiForm">
+        <h2>API تنظیمات</h2>
+        <label for="apiKey">کلید API:</label>
+        <input type="text" id="apiKey" name="apiKey" placeholder="کلید API خود را وارد کنید">
+
+        <label for="prompt">پرامپت:</label>
+        <input type="text" id="prompt" name="prompt" placeholder="مثلاً: ۱۰ کلمه ورزشی">
+
+        <button type="button" id="submitForm">ارسال به AI</button>
+
+
+        <label for="apiResponse">پاسخ:</label>
+        <textarea id="apiResponse" name="apiResponse" rows="5" readonly></textarea>
+
+    </form>
+</div>
+<button id="toggleSidebar">⚙️ تنظیمات</button>
 
 
 

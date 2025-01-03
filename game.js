@@ -147,3 +147,99 @@ startButton.addEventListener('click', startGame);
 
 // Create word cloud when the page loads
 createWordCloud();
+
+
+// sidebar scripts
+
+const sidebar = document.getElementById("sidebar");
+const toggleButton = document.getElementById("toggleSidebar");
+const submitFormButton = document.getElementById("submitForm");
+
+toggleButton.addEventListener("click", () => {
+    if (sidebar.style.width === "0px" || sidebar.style.width === "") {
+        sidebar.style.width = "500px";
+    } else {
+        sidebar.style.width = "0px";
+    }
+});
+
+submitFormButton.addEventListener("click", async () => {
+    const apiKey = document.getElementById("apiKey").value.trim();
+    const prompt = document.getElementById("prompt").value.trim();
+    const responseTextarea = document.getElementById("apiResponse");
+
+    if (!apiKey || !prompt) {
+        alert("لطفاً کلید API و پرامپت را وارد کنید.");
+        return;
+    }
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+                model: "text-davinci-003",
+                prompt: prompt,
+                max_tokens: 50,
+            }),
+        });
+
+        const data = await response.json();
+        responseTextarea.value = data.choices[0].text.trim();
+    } catch (error) {
+        responseTextarea.value = "خطایی رخ داد: " + error.message;
+    }
+});
+
+const closeButton = document.getElementById("closeSidebar");
+
+closeButton.addEventListener("click", () => {
+    sidebar.style.width = "0px";
+});
+
+
+// AI
+submitFormButton.addEventListener("click", async () => {
+    const apiKey = document.getElementById("apiKey").value.trim(); // دریافت کلید API
+    const prompt = document.getElementById("prompt").value.trim(); // دریافت پرامپت
+    const responseTextarea = document.getElementById("apiResponse"); // نمایش پاسخ
+
+    if (!apiKey || !prompt) {
+        alert("لطفاً کلید API و پرامپت را وارد کنید.");
+        return;
+    }
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+                model: "text-davinci-003",
+                prompt: prompt,
+                max_tokens: 50,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`خطای API: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data); // لاگ کردن داده کامل پاسخ
+
+        if (data.choices && data.choices[0] && data.choices[0].text) {
+            responseTextarea.value = data.choices[0].text.trim();
+        } else {
+            responseTextarea.value = "خطا: پاسخ معتبر از API دریافت نشد.";
+        }
+    } catch (error) {
+        responseTextarea.value = "خطا: " + error.message;
+    }
+
+});
