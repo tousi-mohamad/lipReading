@@ -187,6 +187,96 @@
 
 
     </style>
+    <style>
+        @media only screen and (max-width: 768px) {
+            body {
+                background-size: cover;
+                background-position: center;
+            }
+            #timer {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 23px;
+                color: red;
+            }
+            #points {
+                position: fixed;
+                top: 10px;
+                font-size: 30px;
+            }
+
+            #word {
+                font-size: 150px;
+            }
+
+            .buttons {
+                display: flex;
+                gap: 10px;
+                position: fixed;
+                bottom: 97px;
+            }
+
+            button {
+                padding: 5px 15px;
+                font-size: 25px;
+                cursor: pointer;
+                border: none;
+                border-radius: 5px;
+            }
+
+            .sidebar {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background-color: #111;
+                overflow-x: hidden;
+                transition: 0.3s;
+                padding-top: 20px;
+            }
+
+            .sidebar form {
+                padding: 10px;
+                margin: 10px;
+            }
+
+            .sidebar input,
+            .sidebar textarea,
+            .sidebar button {
+                width: 100%;
+                margin: 5px 0;
+                padding: 5px;
+                border: none;
+                border-radius: 5px;
+            }
+
+            #toggleSidebar {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+            #word {
+                font-family: Arial, sans-serif;
+                font-size: 36px;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            #points {
+                font-size: 24px;
+                color: #666;
+                margin-top: 10px;
+            }
+        }
+    </style>
     <!-- Include the canvas-confetti library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
